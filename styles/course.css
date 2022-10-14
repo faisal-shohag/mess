@@ -1,0 +1,401 @@
+.course-top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+    color: #eee;
+    margin: 0;
+    padding: 10px;
+    font-family: 'poppins', Hind Siliguri;
+    position: relative;
+    background: #654ea3;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #c40f5a, #654ea3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
+}
+
+.course-wrap{
+  background: url(https://resources.beecrowd.com.br/academic/img/geometry.png) top left #fff;
+  background-image: url(https://resources.beecrowd.com.br/academic/img/geometry.png);
+  background-position-x: left;
+  background-position-y: top;
+  background-size: 250px 250px;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+}
+
+.course-top .course-image img{
+  height: 100px;
+}
+
+.course-title{
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.course-sub-title{
+    z-index: 2;
+    font-size: 14px;
+}
+
+.course-image{
+    position: absolute;
+    left: -10px;
+    z-index: 1;
+    bottom: 0px;
+}
+
+.course-countdown{
+    font-size: 40px;
+    z-index: 2;
+}
+
+.course-materials{
+    display: flex;
+    font-size: 10px;
+    gap: 10px;
+}
+
+.nav{
+    justify-content: space-between !important;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.nav li{
+    width: 50%;
+}
+
+.nav-tabs{
+    width: 100% !important;
+    
+}
+
+.nav-link{
+    text-align: center;
+    width: 100%;
+    color: #222 !important;
+}
+
+button{
+    text-align: center;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    /* color: red !important; */
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-bottom: 1px solid rgb(148, 42, 209) !important;
+    width: 100% !important;
+    border-radius: 0px !important;
+    color: #3a179b !important;
+  }
+
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover {
+    width: 100% !important;
+  }
+
+
+  .tab-content{
+    padding: 10px;
+  }
+
+  .blabla{
+    margin-bottom: 10px;
+  }
+
+  .blabla{
+    font-size: 15px;
+  }
+
+  .details-resource{
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .details-resource .text{
+    font-weight: bold;
+  }
+
+  del{
+    color: rgb(187, 185, 185);
+  }
+
+  .details-resource .value{
+    font-size: 18px;
+  }
+
+  .enroll{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    background: #654ea3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #c40f5a, #654ea3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #eee;
+    font-weight: bold;
+    left: 0;
+    font-size: 20px;    
+  }
+
+  .course-download{
+    font-family: poppins;
+    margin-top: 10px;
+    color: #e5ddfa;
+    background: #3a179b;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .comments-off{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .comments-off img{
+    height: 80px;
+  }
+
+  .comments-off .text{
+    font-family: poppins;
+    font-size: 18px;
+    color: #9f9ea0;
+  }
+
+
+
+  .social{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    font-size: 20px;
+  }
+
+  .center_loader{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .modal-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .modal-title img {
+    height: 30px;
+  }
+
+  .modal-body{
+    font-family: 'poppins', Kalpurush;
+  }
+
+  .paid{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .paid i{
+    font-size: 30px;
+    color: green;
+  }
+
+  #transLoader{
+    display: none;
+  }
+
+  .live-post{
+    font-family: 'poppins', Kalpurush;
+    border: 1px solid #eee;
+    /* padding: 5px; */
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+
+  .live-post .post .post-top{
+    display: flex;
+    justify-content: space-between;
+    background: #ececf1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 2px;
+  }
+
+
+  .live-post .post .avatar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.2rem;
+  }
+
+  .post-top .date{
+    font-size: 12px;
+  }
+
+  .post-top .time{
+    text-align: center;
+    font-size: 14px;
+  }
+
+
+
+  .post .title{
+    font-size: 16px;
+  }
+
+  .post .sub-title{
+    font-size: 10px;
+    color: #626264;
+  }
+
+  .live-post .post .avatar img{
+    height: 50px;
+  }
+
+  .live-post .post-body{
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .live-post .comments{
+    padding: 10px;
+    border-top: 1px solid #eee;
+  }
+
+  #live_list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .lc{
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .lc .t-num{
+    background: green;
+  }
+
+  .list-wrap{
+    border: 1px solid #eee;
+    padding: 0px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .list-title{
+    padding: 5px;
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-family: poppins;
+    background: #f5f4f5;
+    margin-bottom: 10px;
+  }
+
+  .adv{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .adv img{
+    width: 100%;
+  }
+
+  .live_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* margin-bottom: 10px; */
+    padding: 5px;
+    border-top: 1px solid #eee;
+  }
+
+  .live-nb{
+    font-size: 10px;
+    color: #c40f5a;
+    font-weight: bold;
+  }
+
+  form button{
+    margin: 5px;
+  }
+
+  .no-cmnt{
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .comment-wrap{
+   padding: 10px;
+   border-top: 1px solid #eee;
+  }
+
+  .comment-avatar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  .comment-delete{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 10px;
+    color: crimson;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+ 
+
+  .comment-det .name{
+   font-size: 13px;
+  }
+
+  .comment-det .time{
+   font-size: 10px;
+  }
+
+  .comment-body{
+    font-size: 13px;
+    padding: 5px;
+  }
+
+  .comment-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .comment-title #refresh{
+    font-size: 10px;
+    color: rgb(23, 23, 241);
+    text-decoration: underline;
+    cursor: pointer;
+  }

@@ -1,0 +1,54 @@
+.stat-top{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-family: 'Poppins', Kalpurush;
+}
+
+.stat-top .stat-item{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 100px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+
+.stat-item .text{
+    color: rgb(83, 82, 82);
+    font-size: 15px;
+}
+
+.stat-item .count{
+    font-size: 17px;
+}
+
+.profile-top{
+    background: rgba(26, 161, 98, 0.233);
+    padding: 10px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.profile-bottom{
+ padding: 10px;
+ font-family: 'Poppins', Kalpurush;
+ border-top-left-radius: 20px;
+border-top-right-radius: 20px;
+ background:  rgba(35, 26, 161, 0.233);
+ height: 60vh;
+}
+
+.profile-head{
+  padding: 10px;
+  font-size: 20px;
+}
+
+.profile-bottom .sad{
+    margin-top: 10px;
+}

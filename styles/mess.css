@@ -1,0 +1,160 @@
+#members_list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.member{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background: rgb(113, 29, 161);
+    color: #eee;
+    border-radius: 3px;
+
+}
+
+.body{
+    font-family: 'Poppins', Kalpurush;
+}
+
+#member_details, #member_details_m{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.m_d_name{
+    font-size: 25px;
+}
+
+.m_d_amount{
+    font-size: 35px;
+    padding: 5px;
+    height: 140px;
+    width: 140px;
+    background: crimson;
+    color: #eee;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid rgb(226, 86, 114);
+}
+
+#app{
+    font-family: Poppins;
+}
+
+.deposit_history, .deduct_history, .deposit_history_m, .deduct_history_m{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dd{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background: rgb(34, 112, 34);
+    align-items: center;
+    border-radius: 5px;
+    color: #eee;
+}
+
+.dd_text{
+    font-size: 16px;
+}
+
+.dd_date{
+    font-size: 10px;
+}
+
+.dd_amount{
+    font-size: 20px;
+}
+
+.deduct_history .dd, .deduct_history_m .dd{
+    background: crimson;
+    color: #eee;
+}
+
+.stats, .total_stats{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.total_stats{
+ gap: 30px;
+}
+
+.stat{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.stat-count{
+    font-size: 17px;
+}
+
+.stat-text{
+    font-size: 14px;
+}
+
+.bazar_list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bzr_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(65, 20, 170);
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #eee;
+    border-radius: 3px;
+
+}
+
+.date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.d{
+    font-size: 13px;
+}
+
+.float_add{
+ position: fixed;
+ bottom: 10%;
+ right: 5%;
+ height: 50px;
+ width: 50px;
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ background: #fff;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ z-index: 99;
+}
+
+.float_add img{
+    height: 40px;
+}

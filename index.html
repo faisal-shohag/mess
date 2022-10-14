@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Manager</title>
+    <link rel="stylesheet" href="./styles/exam.css"/>
+    <link rel="stylesheet" href="./styles/main.css"/>
+    <link rel="stylesheet" href="./styles/course.css"/>
+    <link rel="stylesheet" href="./styles/profile.css"/>
+    
+    <link rel="stylesheet" href="./icons/icofont/icofont.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Poppins:ital,wght@0,600;0,700;0,900;1,500;1,600;1,800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/mess.css"/>
+   <script>
+        MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              displayMath: [ ["$$","$$"]],
+                      processEscapes: false,
+                      packages: {
+                          '[+]': ['physics', 'color', 'bbox', 'cancel', 'mhchem', 'noundefined', ]
+                      }
+            },
+            svg: {
+              fontCache: 'global',
+              scale: 1
+            },
+            chtml: {
+              scale: 0.8
+            },
+            loader: {
+                      load: ['[tex]/physics', '[tex]/color', '[tex]/bbox', '[tex]/cancel', '[tex]/mhchem', '[tex]/noundefined']
+                    },
+                    tags: 'ams'
+        };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<body>
+<div class="fixed-top w-100 text-dark top">
+  <div class="logo"> <div class="icon"><img src="./images/logo.png"></div> <div class="top-title">Britto Edu.</div></div>
+  <div class="countdown"></div>
+  <div class="user-panel">
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Profile</a></li>
+    <li><a class="dropdown-item" href="#">My courses</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Logout</a></li>
+  </ul>
+</div>
+</div>
+
+  <div id="app"></div>
+    
+
+  <div class="get-info"></div>
+
+
+  <span id="footer">
+    <div class="footer">
+
+        <a href="#!/">
+          <div class="footerMenu">
+          <div class="footerIcon sz hm"><img src="./images/admin.png"></div>
+          <div class="footertext">Manager</div>
+        </div>
+        </a>
+  
+        <a href="#!/members"><div class="footerMenu">
+          <div class="footerIcon sz mem"><img src="./images/group.png"></div>
+          <div class="footertext">Members</div>
+        </div>
+      </a>
+      
+      <a href="#!/bazaar"><div class="footerMenu">
+          <div class="footerIcon sz bzr"><img src="./images/fruit.png">
+            </div>
+          <div class="footertext">Bazaar</div>
+          
+        </div>
+        </a>
+         <!--
+  
+        <a href="#!/notice"><div class="footerMenu">   
+          <div class="footerIcon sz ntc"><img src="./images/ntf.png"></div>
+          <div class="footertext">Notice</div>
+        </div>
+      </a> -->
+
+    </div></span>
+ 
+    <div class="sp">
+  <div class="splash">
+
+    <div class="splash-logo">
+      <img src="./images/logo.png">
+      <div class="splash-text">My Manager.</div>
+      <div class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="splash-footer">
+      My Manager. v1.0
+
+    </div>
+    
+  </div>
+
+  
+
+
+  </div>
+      
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/navigo/7.1.3/navigo.min.js" integrity="sha512-T5Jaw8KOeloIRJz6TfFWDNqeTwMnLTXf2amscWwmNmIPmrAjPdl47fupdu7TrX3eSVuS1NElEfw0h2+0SsNxaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-analytics.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-auth.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-database.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-firestore.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-storage.min.js"></script> -->
+
+
+    <script>
+       const firebaseConfig = {
+        apiKey: "AIzaSyBqRrjf1JRFARJnlMN2snmTnY7gN_UDGOM",
+        authDomain: "sports-13605.firebaseapp.com",
+        databaseURL: "https://sports-13605-default-rtdb.firebaseio.com",
+        projectId: "sports-13605",
+        storageBucket: "sports-13605.appspot.com",
+        messagingSenderId: "1095400890184",
+        appId: "1:1095400890184:web:6d99ef40ae9ef2d9e79d7d",
+        measurementId: "G-K6JQGTE9CB"
+      };
+
+
+firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var store = firebase.firestore();
+    var db = firebase.database();
+    </script>
+
+  
+
+
+<script src="./scripts/routes.js"></script>
+
+
+
+    
+</body>
+</html>
