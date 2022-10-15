@@ -281,15 +281,32 @@ router.on({
       
         members_list.innerHTML = ``;
         let i = 0;
+        let members = [];
         snap.forEach(member => {
+         
           i++;
-          members_list.innerHTML +=`
+          if(member.val().amount <= 50){
+            members_list.innerHTML +=`
+          <a href="#!/member_details/${member.key}"><div style="background: crimson;" class="member">
+          <div class="member_name">${i}. ${member.val().name}</div>
+          <div class="member_amount">${member.val().amount}</div>
+          </div></a>
+          `
+          }else{
+            members_list.innerHTML +=`
           <a href="#!/member_details/${member.key}"><div class="member">
           <div class="member_name">${i}. ${member.val().name}</div>
           <div class="member_amount">${member.val().amount}</div>
           </div></a>
           `
+          }
+          
         });
+
+        // members.push({
+        //   name: menubar.val().name,
+        //   amount: member.val().amount
+        // })
 
 
       })
