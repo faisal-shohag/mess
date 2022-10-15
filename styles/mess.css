@@ -34,13 +34,25 @@
     padding: 5px;
     height: 140px;
     width: 140px;
-    background: crimson;
+    background: rgb(36, 12, 143);
     color: #eee;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid rgb(226, 86, 114);
+    border: 5px solid rgb(86, 100, 226);
+}
+
+.m_d_amount.low{
+    background: crimson;
+    border: 5px solid rgba(226, 65, 98, 0.959);
+}
+
+.m_d_warning{
+    background: crimson;
+    color: #eee;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 #app{

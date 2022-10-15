@@ -444,12 +444,23 @@ router.on({
         let data = snap.val();
         amount = data.amount;
         myname = data.name;
-        $('#member_details').html(`
-        <div class="m_d_amount">${data.amount}
+        if(data.amount <= 50){
+          $('#member_details').html(`
+        <div class="m_d_amount low animate__animated animate__bounceIn">${data.amount}
+        </div>
+        <div class="m_d_name">${data.name}</div>
+        <div class="m_d_warning"><i class="icofont-warning"></i> Balance is very low.</div>
+        <br>
+        `);
+        }else{
+          $('#member_details').html(`
+        <div class="m_d_amount animate__animated animate__bounceIn">${data.amount}
         </div>
         <div class="m_d_name">${data.name}</div>
         <br>
         `);
+        }
+        
 
        
         
