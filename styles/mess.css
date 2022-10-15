@@ -92,7 +92,7 @@
     color: #eee;
 }
 
-.stats, .total_stats{
+.stats, .total_stats, .total_stats_m{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

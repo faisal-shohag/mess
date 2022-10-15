@@ -38,6 +38,7 @@ router.on({
       <div class="body">
       
       <div id="member_details_m"></div>
+      <div class="total_stats_m"></div>
       
       </div>
 
@@ -133,10 +134,10 @@ router.on({
 
       }
       let total_deduct = 0;
-      let regular = 0;
-    let guest = 0;
-    let half = 0;
-    let khala = 0;
+    //   let regular = 0;
+    // let guest = 0;
+    // let half = 0;
+    // let khala = 0;
     if(data.deducts){
       const deduct_history_m = document.querySelector('.deduct_history_m');
       deduct_history_m.innerHTML = ``;
@@ -149,12 +150,12 @@ router.on({
   
      for(let i=0; i<deducts.length; i++){
       total_deduct += deducts[i][1].amount;
-      if(deducts[i][1].status === 'Regular Meal Charge') regular++;
-      if(deducts[i][1].status === 'Guest Meal Charge') guest++;
-      if(deducts[i][1].status === 'Half Meal Charge') half++;
-      if(deducts[i][1].status === 'Khala'){
-        khala = deducts[i][1].amount;
-      }
+      // if(deducts[i][1].status === 'Regular Meal Charge') regular++;
+      // if(deducts[i][1].status === 'Guest Meal Charge') guest++;
+      // if(deducts[i][1].status === 'Half Meal Charge') half++;
+      // if(deducts[i][1].status === 'Khala'){
+      //   khala = deducts[i][1].amount;
+      // }
       if(deducts[i][1].name){
       deduct_history_m.innerHTML += `
      <div class="dd">
@@ -182,7 +183,7 @@ router.on({
     }
     }
 
-     $('.total_stats').html(`
+     $('.total_stats_m').html(`
      <div style="background: green; color: #eee;" class="stat">
      <div class="stat-count">${total_deposit}</div>
      <div class="stat-text">Total Dep.</div>
@@ -195,29 +196,29 @@ router.on({
      
      `)
 
-     $('.stats').html(`
+    //  $('.stats').html(`
      
 
-     <div class="stat">
-    <div class="stat-count">${regular}x25 = ${regular*25}</div>
-    <div class="stat-text">Meal</div>
-    </div>
+    //  <div class="stat">
+    // <div class="stat-count">${regular}x25 = ${regular*25}</div>
+    // <div class="stat-text">Meal</div>
+    // </div>
 
-    <div class="stat">
-    <div class="stat-count">${half}x15 = ${half*15}</div>
-    <div class="stat-text">Half</div>
-    </div>
+    // <div class="stat">
+    // <div class="stat-count">${half}x15 = ${half*15}</div>
+    // <div class="stat-text">Half</div>
+    // </div>
 
-    <div class="stat">
-    <div class="stat-count">${guest}x30 = ${guest*30}</div>
-    <div class="stat-text">Guest</div>
-    </div>
+    // <div class="stat">
+    // <div class="stat-count">${guest}x30 = ${guest*30}</div>
+    // <div class="stat-text">Guest</div>
+    // </div>
 
-    <div class="stat">
-    <div class="stat-count">${khala}</div>
-    <div class="stat-text">Khala</div>
-    </div>
-     `)
+    // <div class="stat">
+    // <div class="stat-count">${khala}</div>
+    // <div class="stat-text">Khala</div>
+    // </div>
+    //  `)
 
     });
   
