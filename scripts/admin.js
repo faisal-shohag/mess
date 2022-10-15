@@ -721,8 +721,8 @@ router.on({
       let bazaar = [];
 
       db.ref('app/bazaar').on('value', snap=> {
-       
-        console.log(bazaar)
+        bazaar = []
+        // console.log(bazaar)
 
         snap.forEach(item=>{
           bazaar.push({
@@ -782,7 +782,7 @@ router.on({
             showConfirtmButton: true,
             showCancelButton: true
           }).then(res=>{
-            if(res.isConfirm){
+            if(res.isConfirmed){
             
                 db.ref('app/bazaar').push(data);
               Swal.fire({
