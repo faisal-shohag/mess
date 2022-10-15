@@ -653,12 +653,15 @@ router.on({
         </div>
       `
 
+     
       let bazaar = [];
+      const bazar_list = document.querySelector('.bazar_list')
+    
 
       db.ref('app/bazaar').on('value', snap=> {
-       
-        console.log(bazaar)
-
+        bazar_list.innerHTML = '';
+        // console.log(bazaar)
+        bazaar = [];
         snap.forEach(item=>{
           bazaar.push({
             name: item.val().name,
@@ -666,10 +669,11 @@ router.on({
           })
         })
 
-        console.log(bazaar)
+       // console.log(bazaar)
 
-        const bazar_list = document.querySelector('.bazar_list')
-        bazar_list.innerHTML = ``;
+        bazaar.sort((a, b)=>{
+          return new Date(a.date) - new Date(b.date);
+        })
         for(let i=0; i<bazaar.length; i++){
           let d=(bazaar[i].date).split(' ');
           bazar_list.innerHTML += `
@@ -682,66 +686,68 @@ router.on({
           </div>
           `
         }
+
+        const add_bzr = document.getElementById('add_bzr')
+        $('#add_bzr_button').click(function(){
+          let bazaar_date = (new Date(add_bzr.bzr_date.value)).toString();
+          let day = bazaar_date.split(' ')[2];
+          let data = {
+            name: add_bzr.username.value,
+            date: bazaar_date
+          }
+          let found = false;
+          for(i in bazaar){
+            let day2 = (bazaar[i].date).split(' ')[2];
+            if(day == day2) {
+              found = true;
+              break;
+            }
+          }
+  
+          if(found){
+            Swal.fire({
+              icon: 'error',
+              text: 'This date is booked! Please choose another one!'
+            });
+          }else{
+            if((data.name).trim() != ''){
+            Swal.fire({
+              icon: 'question',
+              text: 'Are you sure?',
+              footer: 'You will never be able to change it!',
+              confirmButtonText: 'Yes',
+              showConfirtmButton: true,
+              showCancelButton: true
+            }).then(res=>{
+              if(res.isConfirmed){
+              
+                  db.ref('app/bazaar').push(data);
+                Swal.fire({
+                  icon: 'success',
+                  text: 'Assigned to Bazaar successfully!'
+                })
+                // bazar_list.innerHTML = '';
+                
+              }
+              
+            })
+  
+          }else{
+            Swal.fire({
+              icon: 'error',
+              text: 'Please enter a name!'
+            });
+          }
+  
+          }
+          
+  
+          
+        })
        
       })
 
-      const add_bzr = document.getElementById('add_bzr')
-      $('#add_bzr_button').click(function(){
-        let bazaar_date = (new Date(add_bzr.bzr_date.value)).toString();
-        let day = bazaar_date.split(' ')[2];
-        let data = {
-          name: add_bzr.username.value,
-          date: bazaar_date
-        }
-        let found = false;
-        for(i in bazaar){
-          let day2 = (bazaar[i].date).split(' ')[2];
-          if(day == day2) {
-            found = true;
-            break;
-          }
-        }
-
-        if(found){
-          Swal.fire({
-            icon: 'error',
-            text: 'This date is booked! Please choose another one!'
-          });
-        }else{
-          if((data.name).trim() != ''){
-          Swal.fire({
-            icon: 'question',
-            text: 'Are you sure?',
-            footer: 'You will never be able to change it!',
-            confirmButtonText: 'Yes',
-            showConfirtmButton: true,
-            showCancelButton: true
-          }).then(res=>{
-            if(res.isConfirm){
-            
-                db.ref('app/bazaar').push(data);
-              Swal.fire({
-                icon: 'success',
-                text: 'Assigned to Bazaar successfully!'
-              })
-              
-              
-            }
-            
-          })
-
-        }else{
-          Swal.fire({
-            icon: 'error',
-            text: 'Please enter a name!'
-          });
-        }
-
-        }
-        
-
-        
-      })
+     
       
     }
 
