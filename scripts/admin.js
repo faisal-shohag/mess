@@ -90,12 +90,13 @@ router.on({
     </div>
       `
       let amount;
+      const deduct_history_m = document.querySelector('.deduct_history_m');
       db.ref('app/manager/').on('value', snap=>{
         let data = snap.val();
         
         amount = data.amount;
         $('#member_details_m').html(`
-        <div class="m_d_amount">${data.total}
+        <div class="m_d_amount">
         </div>
         <div class="m_d_name">Manager</div>
         <br>
@@ -142,7 +143,7 @@ router.on({
     // let half = 0;
     // let khala = 0;
     if(data.deducts){
-      const deduct_history_m = document.querySelector('.deduct_history_m');
+
       deduct_history_m.innerHTML = ``;
      let deducts = Object.entries(data.deducts)
      deducts.sort(function(a, b){
@@ -159,7 +160,8 @@ router.on({
       // if(deducts[i][1].status === 'Khala'){
       //   khala = deducts[i][1].amount;
       // }
-      if(deducts[i][1].name){
+    if(deducts[i][1].status =='Extra in feast' || deducts[i][1].status == 'Mosque' || deducts[i][1].status == 'Khala Bill' || deducts[i][1].status == 'Feast Meal Charge' || deducts[i][1].status == 'Extra in bazaar'){
+    if(deducts[i][1].name){
       deduct_history_m.innerHTML += `
      <div class="dd">
      <div class="dd_status">
@@ -184,6 +186,11 @@ router.on({
      `
      }
     }
+
+  }
+
+
+
     }
 
      $('.total_stats_m').html(`
@@ -198,6 +205,8 @@ router.on({
      </div>
      
      `)
+
+     $('.m_d_amount').html(`${total_deposit-total_deduct}`)
 
     //  $('.stats').html(`
      
@@ -223,7 +232,39 @@ router.on({
     // </div>
     //  `)
 
-    });
+      let todayMeal = data.dailyMeal[getDateId()];
+      todayMeal = Object.entries(todayMeal);
+      let meals = [];
+      let bazaarCount = 0;
+      let half = 0;
+      for(let i=0; i<todayMeal.length; i++){
+        bazaarCount += todayMeal[i][1].amount;
+
+        // if(todayMeal[i][1].status === 'Half Meal Charge')
+        meals.push({
+          name: todayMeal[i][1].name,
+          status: todayMeal[i][1].status,
+          amount: todayMeal[i][1].amount,
+          id: todayMeal[i][0],
+          date: todayMeal[i][1].date
+        })
+      }
+    deduct_history_m.innerHTML += `<center><hr></center>`
+    deduct_history_m.innerHTML += `
+     <div class="dd">
+     <div class="dd_status">
+     <div class="dd_text">Bazaar Today(${todayMeal.length})</div>
+     <div class="dd_date">${dateForm((new Date()).toString())}</div>
+     </div>
+
+     <div class="dd_amount">${bazaarCount} <i class="icofont-taka-minus"></i></div>
+     </div>
+     `
+     
+
+      // console.log(meals);
+
+      });
   
     //deposit
     // $('#deposit_button').click(function(){
@@ -655,8 +696,16 @@ router.on({
           name: myname,
           status: add_deduct.d_status.value,
           amount: parseInt(add_deduct.amount.value),
+          date: (new Date()).toString(),         
+        });
+
+        db.ref('app/manager/dailyMeal/'+getDateId()).push({
+          name: myname,
+          status: add_deduct.d_status.value,
+          amount: parseInt(add_deduct.amount.value),
           date: (new Date()).toString()
-        })
+        });
+
       });
 
 
@@ -840,3 +889,8 @@ router.notFound(function(){
 // });
 
 
+function getDateId(){
+  let d = ((new Date()).toString()).split(' ');
+  let res = d[1]+d[2]+d[3];
+  return res;
+}
