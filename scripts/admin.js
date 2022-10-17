@@ -160,7 +160,7 @@ router.on({
       // if(deducts[i][1].status === 'Khala'){
       //   khala = deducts[i][1].amount;
       // }
-    if(deducts[i][1].status =='Extra in feast' || deducts[i][1].status == 'Mosque' || deducts[i][1].status == 'Khala Bill' || deducts[i][1].status == 'Feast Meal Charge' || deducts[i][1].status == 'Extra in bazaar'){
+    if(deducts[i][1].status =='Extra in feast' || deducts[i][1].status == 'Mosque' || deducts[i][1].status == 'Khala Bill' || deducts[i][1].status == 'Feast Meal Charge' || deducts[i][1].status == 'Extra in bazaar' || deducts[i][1].status == 'Extra'){
     if(deducts[i][1].name){
       deduct_history_m.innerHTML += `
      <div class="dd">
@@ -239,6 +239,7 @@ router.on({
       let half = 0;
       for(let i=0; i<todayMeal.length; i++){
         bazaarCount += todayMeal[i][1].amount;
+        console.log(todayMeal[i][1].amount)
 
         // if(todayMeal[i][1].status === 'Half Meal Charge')
         meals.push({
