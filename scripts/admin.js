@@ -519,14 +519,14 @@ router.on({
     <div class="form-check">
       <input class="form-check-input" name="d_status" type="radio" value="Friday Feast" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
-        Feast Charge
+        Friday Feast
       </label>
     </div>
 
     <div class="form-check">
       <input class="form-check-input" name="d_status" type="radio" value="Personal Meal" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
-        Feast Charge
+        Personal Meal
       </label>
     </div>
 

@@ -98,7 +98,7 @@ router.on({
         
         amount = data.amount;
         $('#member_details_m').html(`
-        <div class="m_d_amount">${data.total}
+        <div class="m_d_amount">
         </div>
         <div class="m_d_name">Manager</div>
         <br><br>
@@ -198,6 +198,8 @@ router.on({
      </div>
      
      `)
+
+     $('.m_d_amount').html(`${total_deposit-total_deduct}`)
 
     //  $('.stats').html(`
      
@@ -320,21 +322,19 @@ router.on({
         snap.forEach(member => {
          
           i++;
-          if(member.val().amount <= 50){
-            members_list.innerHTML +=`
-          <a href="#!/member_details/${member.key}"><div style="background: crimson;" class="member">
-          <div class="member_name">${i}. ${member.val().name}</div>
-          <div class="member_amount">${member.val().amount}</div>
-          </div></a>
-          `
-          }else{
+          // if(member.val().amount <= 50){
             members_list.innerHTML +=`
           <a href="#!/member_details/${member.key}"><div class="member">
           <div class="member_name">${i}. ${member.val().name}</div>
-          <div class="member_amount">${member.val().amount}</div>
           </div></a>
           `
-          }
+          // }else{
+          //   members_list.innerHTML +=`
+          // <a href="#!/member_details/${member.key}"><div class="member">
+          // <div class="member_name">${i}. ${member.val().name}</div>
+          // </div></a>
+          // `
+          // }
           
         });
 
