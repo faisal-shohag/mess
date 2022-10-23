@@ -347,6 +347,62 @@ router.on({
       })
 
     },
+    "/daily/:id": function(params){
+      $('.top-title').html(`Members`);
+      $('.footer').show();
+      $('.footertext').hide();
+        $('.footerIcon').removeClass('footerIconActive');
+            if($('.mem')[0].classList[3] === undefined){
+        $('.mem').addClass('footerIconActive');
+        $($($('.mem')[0].parentNode)[0].lastElementChild).show();
+        //$('.top_logo').html(`<div onclick="window.history.back()" class="top_app_title"><div class="animate__animated animate__fadeIn top_dir"><img src="../images/pencil-case.png" height="30px"></div> <div class="animate__animated animate__fadeIn top_text">Resources</div></div>`);
+        }
+      app.innerHTML = `
+      <div class="body">
+      
+     <div id="members_list"></div></div>
+
+      `
+
+      const add_member = document.getElementById('add_member');
+
+      const members_list = document.getElementById('members_list');
+
+      db.ref('app/manager/dailyMeal/'+params.id).on('value', snap=>{
+      
+        members_list.innerHTML = ``;
+        let i = 0;
+        let members = [];
+        snap.forEach(member => {
+         
+          i++;
+          if(member.val().amount <= 50){
+            members_list.innerHTML +=`
+          <div style="background: crimson;" class="member">
+          <div class="member_name">${i}. ${member.val().name}</div>
+          <div class="member_amount">${member.val().amount}</div>
+          </div>
+          `
+          }else{
+            members_list.innerHTML +=`
+          <div class="member">
+          <div class="member_name">${i}. ${member.val().name}</div>
+          <div class="member_amount">${member.val().amount}</div>
+          </div>
+          `
+          }
+          
+        });
+
+        // members.push({
+        //   name: menubar.val().name,
+        //   amount: member.val().amount
+        // })
+
+
+      })
+
+    },
 
     "member_details/:id": function(params){
      
@@ -602,6 +658,9 @@ router.on({
       <div class="stat-text">Khala</div>
       </div>
        `)
+
+       $('.m_d_amount').text(total_deposit-total_deduct)
+
 
       });
     

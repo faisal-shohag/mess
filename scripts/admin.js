@@ -231,7 +231,9 @@ router.on({
     // <div class="stat-text">Khala</div>
     // </div>
     //  `)
+      if(data.dailyMeal[getDateId()]){
 
+    
       let todayMeal = data.dailyMeal[getDateId()];
       todayMeal = Object.entries(todayMeal);
       let meals = [];
@@ -261,7 +263,7 @@ router.on({
      <div class="dd_amount">${bazaarCount} <i class="icofont-taka-minus"></i></div>
      </div>
      `
-     
+    }
 
       // console.log(meals);
 
@@ -373,29 +375,25 @@ router.on({
           amount: 0
         }
 
-        console.log(data);
-
+        // console.log(data);
         db.ref('app/members').push(data);
-
         $('#add_m').modal('hide');
       })
 
       const members_list = document.getElementById('members_list');
-
-      db.ref('app/members').on('value', snap=>{
-      
+      db.ref('app/members').on('value', snap=>{     
         members_list.innerHTML = ``;
-        let i = 0;
+        let i = 0;       
         snap.forEach(member => {
           i++;
           members_list.innerHTML +=`
-          <a href="#!/member_details/${member.key}"><div class="member">
+          <a href="#!/member_details/${member.key}">
+          <div class="member">
           <div class="member_name">${i}. ${member.val().name}</div>
-          <div class="member_amount">${member.val().amount}</div>
-          </div></a>
+          </div>
+          </a>
           `
         });
-
 
       })
 
@@ -513,6 +511,20 @@ router.on({
 
       <div class="form-check">
       <input class="form-check-input" name="d_status" type="radio" value="Feast Charge" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Feast Charge
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" name="d_status" type="radio" value="Friday Feast" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Feast Charge
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" name="d_status" type="radio" value="Personal Meal" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
         Feast Charge
       </label>
@@ -654,6 +666,8 @@ router.on({
       </div>
        `)
 
+       $('.m_d_amount').text(total_deposit-total_deduct)
+
       });
     
       //deposit
@@ -708,6 +722,9 @@ router.on({
         });
 
       });
+
+
+     
 
 
 
