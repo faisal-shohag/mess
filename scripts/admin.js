@@ -160,7 +160,7 @@ router.on({
       // if(deducts[i][1].status === 'Khala'){
       //   khala = deducts[i][1].amount;
       // }
-    if(deducts[i][1].status =='Extra in feast' || deducts[i][1].status == 'Mosque' || deducts[i][1].status == 'Khala Bill' || deducts[i][1].status == 'Feast Meal Charge' || deducts[i][1].status == 'Extra in bazaar' || deducts[i][1].status == 'Extra'){
+    if(deducts[i][1].status =='Extra in feast' || deducts[i][1].status == 'Mosque' || deducts[i][1].status == 'Khala Bill'  || deducts[i][1].status == 'Extra in bazaar' || deducts[i][1].status == 'Extra'){
     if(deducts[i][1].name){
       deduct_history_m.innerHTML += `
      <div class="dd">
@@ -530,6 +530,13 @@ router.on({
       </label>
     </div>
 
+    <div class="form-check">
+    <input class="form-check-input" name="d_status" type="radio" value="Extra" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+      Extra
+    </label>
+  </div>
+
 
 
           
@@ -598,6 +605,7 @@ router.on({
       let guest = 0;
       let half = 0;
       let khala = 0;
+      let extras = 0;
       if(data.deducts){
         const deduct_history = document.querySelector('.deduct_history');
         deduct_history.innerHTML = ``;
@@ -613,6 +621,7 @@ router.on({
         if(deducts[i][1].status === 'Regular Meal Charge') regular++;
         if(deducts[i][1].status === 'Guest Meal Charge') guest++;
         if(deducts[i][1].status === 'Half Meal Charge') half++;
+        if(deducts[i][1].status === 'Extra') extras+= parseInt(deducts[i][1].amount);
         if(deducts[i][1].status === 'Khala'){
           khala = deducts[i][1].amount;
         }
@@ -664,6 +673,11 @@ router.on({
       <div class="stat-count">${khala}</div>
       <div class="stat-text">Khala</div>
       </div>
+
+      <div class="stat">
+      <div class="stat-count">${extras}</div>
+      <div class="stat-text">Extras</div>
+      </div>
        `)
 
        $('.m_d_amount').text(total_deposit-total_deduct)
@@ -700,26 +714,26 @@ router.on({
           date: (new Date()).toString(),
           status: add_deduct.d_status.value
         });
-        db.ref('app/members/'+params.id).update({
-          amount: amount-parseInt(add_deduct.amount.value),
-        });
-        db.ref('app/manager').update({
-          total: total-parseInt(add_deduct.amount.value)
-        })
+        // db.ref('app/members/'+params.id).update({
+        //   amount: amount-parseInt(add_deduct.amount.value),
+        // });
+        // db.ref('app/manager').update({
+        //   total: total-parseInt(add_deduct.amount.value)
+        // })
 
-        db.ref('app/manager/deducts').push({
-          name: myname,
-          status: add_deduct.d_status.value,
-          amount: parseInt(add_deduct.amount.value),
-          date: (new Date()).toString(),         
-        });
+        // db.ref('app/manager/deducts').push({
+        //   name: myname,
+        //   status: add_deduct.d_status.value,
+        //   amount: parseInt(add_deduct.amount.value),
+        //   date: (new Date()).toString(),         
+        // });
 
-        db.ref('app/manager/dailyMeal/'+getDateId()).push({
-          name: myname,
-          status: add_deduct.d_status.value,
-          amount: parseInt(add_deduct.amount.value),
-          date: (new Date()).toString()
-        });
+        // db.ref('app/manager/dailyMeal/'+getDateId()).push({
+        //   name: myname,
+        //   status: add_deduct.d_status.value,
+        //   amount: parseInt(add_deduct.amount.value),
+        //   date: (new Date()).toString()
+        // });
 
       });
 

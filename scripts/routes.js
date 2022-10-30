@@ -39,6 +39,8 @@ router.on({
       
       <div id="member_details_m"></div>
       <div class="total_stats_m"></div>
+
+      <div class="stats"></div>
       
       </div>
 
@@ -148,6 +150,8 @@ router.on({
      })
 
     
+     let extra = 0;
+     let khala_bill = 0;
   
      for(let i=0; i<deducts.length; i++){
       total_deduct += deducts[i][1].amount;
@@ -157,8 +161,16 @@ router.on({
       // if(deducts[i][1].status === 'Khala'){
       //   khala = deducts[i][1].amount;
       // }
-      if(deducts[i][1].status =='Extra in feast' || deducts[i][1].status == 'Mosque' || deducts[i][1].status == 'Khala Bill' || deducts[i][1].status == 'Feast Meal Charge' || deducts[i][1].status == 'Extra in bazaar' || deducts[i][1].status == 'Extra'){
-      if(deducts[i][1].name){
+      if(deducts[i][1].status =='Extra in feast' || deducts[i][1].status == 'Mosque' || deducts[i][1].status == 'Khala Bill'  || deducts[i][1].status == 'Extra in bazaar' || deducts[i][1].status == 'Extra'){
+        if(deducts[i][1].status != 'Khala Bill'){
+          extra += parseInt(deducts[i][1].amount)
+        }
+
+        if(deducts[i][1].status == 'Khala Bill'){
+          khala_bill += parseInt(deducts[i][1].amount)
+        }
+        
+        if(deducts[i][1].name){
       deduct_history_m.innerHTML += `
      <div class="dd">
      <div class="dd_status">
@@ -184,6 +196,19 @@ router.on({
      }
     }
   }
+
+  $('.stats').html(`
+  <div class="stat">
+      <div class="stat-count">${extra}</div>
+      <div class="stat-text">Extras</div>
+      </div>
+
+      <div class="stat">
+      <div class="stat-count">${khala_bill}</div>
+      <div class="stat-text">Khala Bill</div>
+      </div>
+  
+  `)
     }
 
      $('.total_stats_m').html(`
@@ -508,6 +533,13 @@ router.on({
         </div>
 
         <div class="form-check">
+          <input class="form-check-input" name="d_status" type="radio" value="Extra" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Extra
+          </label>
+        </div>
+
+        <div class="form-check">
         <input class="form-check-input" name="d_status" type="radio" value="Khala" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Khala
@@ -588,6 +620,7 @@ router.on({
       let guest = 0;
       let half = 0;
       let khala = 0;
+      let extras = 0;
       const deduct_history = document.querySelector('.deduct_history');
       if(data.deducts){
 
@@ -604,6 +637,7 @@ router.on({
         if(deducts[i][1].status === 'Regular Meal Charge') regular++;
         if(deducts[i][1].status === 'Guest Meal Charge') guest++;
         if(deducts[i][1].status === 'Half Meal Charge') half++;
+        if(deducts[i][1].status === 'Extra') extras = deducts[i][1].amount;
         if(deducts[i][1].status === 'Khala'){
           khala = deducts[i][1].amount;
         }
@@ -656,6 +690,11 @@ router.on({
       <div class="stat">
       <div class="stat-count">${khala}</div>
       <div class="stat-text">Khala</div>
+      </div>
+
+      <div class="stat">
+      <div class="stat-count">${extras}</div>
+      <div class="stat-text">Extras</div>
       </div>
        `)
 
