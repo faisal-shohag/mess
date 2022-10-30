@@ -714,26 +714,26 @@ router.on({
           date: (new Date()).toString(),
           status: add_deduct.d_status.value
         });
-        // db.ref('app/members/'+params.id).update({
-        //   amount: amount-parseInt(add_deduct.amount.value),
-        // });
-        // db.ref('app/manager').update({
-        //   total: total-parseInt(add_deduct.amount.value)
-        // })
+        db.ref('app/members/'+params.id).update({
+          amount: amount-parseInt(add_deduct.amount.value),
+        });
+        db.ref('app/manager').update({
+          total: total-parseInt(add_deduct.amount.value)
+        })
 
-        // db.ref('app/manager/deducts').push({
-        //   name: myname,
-        //   status: add_deduct.d_status.value,
-        //   amount: parseInt(add_deduct.amount.value),
-        //   date: (new Date()).toString(),         
-        // });
+        db.ref('app/manager/deducts').push({
+          name: myname,
+          status: add_deduct.d_status.value,
+          amount: parseInt(add_deduct.amount.value),
+          date: (new Date()).toString(),         
+        });
 
-        // db.ref('app/manager/dailyMeal/'+getDateId()).push({
-        //   name: myname,
-        //   status: add_deduct.d_status.value,
-        //   amount: parseInt(add_deduct.amount.value),
-        //   date: (new Date()).toString()
-        // });
+        db.ref('app/manager/dailyMeal/'+getDateId()).push({
+          name: myname,
+          status: add_deduct.d_status.value,
+          amount: parseInt(add_deduct.amount.value),
+          date: (new Date()).toString()
+        });
 
       });
 
