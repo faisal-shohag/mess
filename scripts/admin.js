@@ -1016,7 +1016,7 @@ router.on({
           totalPersonal += personal;
           totalG+= g;
 
-          if((deposited - deducted) < 25){
+          if((deposited - deducted) <= 0){
             table_body.innerHTML +=`
           <tr>
           <td>${no}</td>
