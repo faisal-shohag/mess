@@ -635,7 +635,7 @@ router.on({
        for(let i=0; i<deducts.length; i++){
         total_deduct += deducts[i][1].amount;
         if(deducts[i][1].status === 'Regular Meal Charge') regular++;
-        if(deducts[i][1].status === 'Guest Meal Charge') guest++;
+        if(deducts[i][1].status === 'Guest Meal Charge') guest+=deducts[i][1].amount;
         if(deducts[i][1].status === 'Half Meal Charge') half++;
         if(deducts[i][1].status === 'Extra') extras = deducts[i][1].amount;
         if(deducts[i][1].status === 'Khala'){
@@ -683,7 +683,7 @@ router.on({
       </div>
 
       <div class="stat">
-      <div class="stat-count">${guest}x30 = ${guest*30}</div>
+      <div class="stat-count">${guest}</div>
       <div class="stat-text">Guest</div>
       </div>
 

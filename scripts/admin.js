@@ -896,6 +896,181 @@ router.on({
         
       })
       
+    },
+
+    "/summary": function(){
+      $('.top-title').html(`Summary`);
+
+      $('.top').hide();
+      $('.footer').hide();
+
+      app.innerHTML = `
+      <div class="body">
+      
+      <table class="table" border="1">
+      <thead>
+      <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Meal</th>
+      <th scope="col">Guest</th>
+      <th scope="col">Personal</th>
+      <th scope="col">Extra</th>
+      <th scope="col">Khala</th>
+      <th scope="col">Deposited</th>
+      <th scope="col">Deducted</th>
+      <th scope="col">Remaining</th>
+      </tr>
+      </thead>
+
+      <tbody id="table_body">
+      
+      </tbody>
+      
+      </table>
+      
+      </div>
+      `
+
+      const table_body = document.getElementById('table_body');
+
+      db.ref('app/members').once('value', snap=> {
+        table_body.innerHTML = '';
+        let khala = 110;
+        let extra = 86;
+
+        let totalMeal = 0;
+        let totalGuest = 0;
+        let totalPersonal = 0;
+        let totalExtra = 0;
+        let totalKhala = 0;
+        let totalDep = 0;
+        let totalDid = 0;
+        let totalRem = 0;
+        let totalG = 0;
+        
+        
+        let no = 0;
+        snap.forEach(item=>{
+          no++;
+          let reg = 0;
+          let guest = 0;
+          let g = 0;
+          let personal = 0;
+          let deposited = 0;
+          let deducted = 0;
+          
+          
+          let m = item.val();
+          if(m.deposits){
+            let deposits = Object.entries(m.deposits);
+            for(let i=0; i<deposits.length; i++){
+              deposited += parseInt(deposits[i][1].amount);
+            }
+          }
+
+          
+          if(m.deducts){
+            let deducts = Object.entries(m.deducts);
+            let deposits = Object.entries(m.deducts);
+            for(let i=0; i<deducts.length; i++){
+              deducted += deducts[i][1].amount;
+              if(deducts[i][1].status == 'Regular Meal Charge' || deducts[i][1].status == 'Half Meal Charge'){
+                reg += deducts[i][1].amount;
+              }
+              if(deducts[i][1].status == 'Guest Meal Charge'){
+                guest += deducts[i][1].amount;
+                g++;
+              }
+              if(deducts[i][1].status == 'Personal Meal' || deducts[i][1].status == 'WiFi Bill' || deducts[i][1].status == 'Feast Meal'){
+                personal += deducts[i][1].amount;
+              }
+
+
+            }
+          }
+         
+          
+         
+          if(m.name == 'Girls Guest(2)'){
+            khala = 0;
+            extra = extra*2;
+          }else{
+            khala = 110;
+            extra = 86;
+          }
+
+          let gs = `${guest}(x${g})`;
+
+          if(g==0){
+            gs = '-';
+          }
+          
+
+          totalExtra += extra;
+          totalKhala += khala;
+          totalDep += deposited;
+          totalDid += deducted;
+          totalMeal += reg;
+          totalGuest += guest;
+          totalPersonal += personal;
+          totalG+= g;
+
+          if((deposited - deducted) < 25){
+            table_body.innerHTML +=`
+          <tr>
+          <td>${no}</td>
+          <td>${m.name}</td>
+          <td>${reg}</td>
+          <td>${gs}</td>
+          <td>${personal}</td>
+          <td>${extra}</td>
+          <td>${khala}</td>
+          <td>${deposited}</td>
+          <td>${deducted}</td>
+          <td class="rem_w">${deposited - (reg+guest+personal+extra+khala)}</td>
+          </tr>
+          `
+          }else{
+            table_body.innerHTML +=`
+          <tr>
+          <td>${no}</td>
+          <td>${m.name}</td>
+          <td>${reg}</td>
+          <td>${gs}</td>
+          <td>${personal}</td>
+          <td>${extra}</td>
+          <td>${khala}</td>
+          <td>${deposited}</td>
+          <td>${deducted}</td>
+          <td>${deposited - (reg+guest+personal+extra+khala)}</td>
+          </tr>
+          `
+          }
+          
+
+
+        });
+
+        table_body.innerHTML +=`
+          <tr class="total_row">
+          <td>#</td>
+          <td>Total</td>
+          <td>${totalMeal}</td>
+          <td>${totalGuest}</td>
+          <td>${totalPersonal}</td>
+          <td>${totalExtra}</td>
+          <td>${totalKhala}</td>
+          <td>${totalDep}</td>
+          <td>${(totalMeal+totalGuest+totalPersonal+totalExtra+(totalKhala))}</td>
+          <td>${totalDep-totalDid}</td>
+          </tr>
+          `
+
+
+
+
+      })
     }
 
  
